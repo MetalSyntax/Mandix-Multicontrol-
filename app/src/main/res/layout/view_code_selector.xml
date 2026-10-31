@@ -74,6 +74,18 @@
         android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnType"
+        style="@style/Sk.Pill"
+        android:layout_width="220dp"
+        android:layout_height="34dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:text="@string/btn_type"
+        android:textColor="#38BDF8"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAuto"
         style="@style/Sk.Pill"
         android:layout_width="220dp"

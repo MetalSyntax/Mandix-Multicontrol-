@@ -136,4 +136,9 @@
     <string name="toast_roku_limited">El Roku bloquea el control por Wi-Fi: activa Acceso a la red → Permisivo en Control por aplicaciones móviles</string>
     <string name="toast_wifi_failed">Sin respuesta de %1$s por Wi-Fi (%2$s). ¿Mismo Wi-Fi? ¿IP correcta?</string>
     <string name="toast_fire_first_connect">Conectando al Fire TV… si en el televisor aparece “¿Permitir depuración?”, elige Permitir siempre</string>
+    <string name="btn_type">⌨ Escribir en el TV</string>
+    <string name="type_title">Escribir en el TV</string>
+    <string name="type_hint">Escribe o pega aquí; antes abre el campo en el TV</string>
+    <string name="type_send">Enviar</string>
+    <string name="toast_type_sent">Texto enviado</string>
 </resources>

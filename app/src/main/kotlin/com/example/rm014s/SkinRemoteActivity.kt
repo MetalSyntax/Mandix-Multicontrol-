@@ -2,10 +2,14 @@ package com.example.rm014s
 
 import android.content.Intent
 import android.os.Bundle
+import android.content.Context
+import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
@@ -77,6 +81,7 @@ class SkinRemoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         spec = SkinRemotes.get(intent.getStringExtra(EXTRA_REMOTE))
         setContentView(spec.layout)
+        fitRemoteToScreen()
         irHelper = IrManagerHelper(this)
         // Modo de emisión: el elegido en este control, si no el probado para él, si no el de la pantalla de TV.
         // Sin nada elegido, ALTERNA: es el que funcionó en el teléfono del usuario (Tecno Camon 30, aire AIWA)
@@ -111,6 +116,8 @@ class SkinRemoteActivity : AppCompatActivity() {
         if (wifiLink != null) {
             codeView.btnWifi.visibility = View.VISIBLE
             codeView.btnWifi.setOnClickListener { wifiDialog() }
+            codeView.btnType.visibility = View.VISIBLE
+            codeView.btnType.setOnClickListener { typeDialog() }
         }
         if (spec.autoProbe != null) {
             codeView.btnAuto.visibility = View.VISIBLE
@@ -162,6 +169,32 @@ class SkinRemoteActivity : AppCompatActivity() {
                 else -> Toast.makeText(this@SkinRemoteActivity, getString(R.string.toast_wifi_failed, wifiIp, error), Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    /** Texto con el teclado del teléfono (se puede pegar) hacia el campo enfocado del TV. */
+    private fun typeDialog() {
+        val link = wifiLink ?: return
+        val input = EditText(this).apply { setSingleLine(); setHint(R.string.type_hint) }
+        val dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.type_title)
+            .setView(input)
+            .setPositiveButton(R.string.type_send) { _, _ ->
+                val text = input.text.toString()
+                if (text.isEmpty()) return@setPositiveButton
+                if (link is FireAdb && !link.connected) toast(R.string.toast_fire_first_connect)
+                lifecycleScope.launch {
+                    when (val error = link.type(wifiIp, text)) {
+                        null -> toast(R.string.toast_type_sent)
+                        "403" -> Toast.makeText(this@SkinRemoteActivity, R.string.toast_roku_limited, Toast.LENGTH_LONG).show()
+                        else -> Toast.makeText(this@SkinRemoteActivity, getString(R.string.toast_wifi_failed, wifiIp, error), Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        dialog.window?.setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        dialog.show()
+        input.requestFocus()
     }
 
     /** IP del equipo y si se usa Wi-Fi o solo IR. */
@@ -327,7 +360,38 @@ class SkinRemoteActivity : AppCompatActivity() {
         led?.setBackgroundResource(R.drawable.led_indicator)
     }
 
+    /** Mete el dibujo del control (todo lo que va después de pestañas y selector) en un [FitLayout] que ocupa el resto de la pantalla. */
+    private fun fitRemoteToScreen() {
+        val column = (findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup).getChildAt(0) as LinearLayout
+        val body = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; gravity = Gravity.CENTER_HORIZONTAL }
+        while (column.childCount > 2) column.getChildAt(2).also { column.removeView(it); body.addView(it) }
+        column.addView(FitLayout(this).apply { addView(body) }, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f))
+    }
+
     private fun toast(res: Int) = Toast.makeText(this, res, Toast.LENGTH_SHORT).show()
 
     private val ALIASES = mapOf("Mode" to "Source", "Source" to "Mode", "Play" to "Pause", "Pause" to "Play")
+}
+
+/**
+ * Escala su único hijo al mayor tamaño que entra en el espacio libre, centrado (los toques se transforman solos).
+ * Dentro del ScrollView (fillViewport) primero se mide sin alto: pide la mitad del alto natural para que el
+ * ScrollView lo vuelva a medir con el alto exacto de la pantalla; si aun así no cabe, queda al 50 % y se desplaza.
+ */
+class FitLayout(context: Context) : FrameLayout(context) {
+    override fun onMeasure(widthSpec: Int, heightSpec: Int) {
+        val child = getChildAt(0)
+        child.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
+        val h = if (MeasureSpec.getMode(heightSpec) == MeasureSpec.UNSPECIFIED) child.measuredHeight / 2 else MeasureSpec.getSize(heightSpec)
+        setMeasuredDimension(MeasureSpec.getSize(widthSpec), h)
+    }
+
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        val c = getChildAt(0)
+        c.layout(0, 0, c.measuredWidth, c.measuredHeight)
+        val s = minOf(width.toFloat() / c.measuredWidth, height.toFloat() / c.measuredHeight)
+        c.pivotX = 0f; c.pivotY = 0f; c.scaleX = s; c.scaleY = s
+        c.translationX = (width - c.measuredWidth * s) / 2
+        c.translationY = (height - c.measuredHeight * s) / 2
+    }
 }

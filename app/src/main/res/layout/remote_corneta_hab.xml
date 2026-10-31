@@ -25,17 +25,17 @@
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="MODE" android:tag="key:Mode" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="↩" android:tag="key:Return" />
+                <ImageButton style="@style/Sk.Key" android:tag="key:Return" android:src="@drawable/ic_k_undo" android:scaleType="fitCenter" android:padding="7dp" android:tint="#1E1E1E" android:contentDescription="Return" />
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="EQ" android:tag="key:Eq" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="PREV" android:tag="key:Prev" />
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="NEXT" android:tag="key:Next" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="▶❚❚" android:tag="key:Play" />
+                <ImageButton style="@style/Sk.Key" android:tag="key:Play" android:src="@drawable/ic_k_playpause" android:scaleType="fitCenter" android:padding="7dp" android:tint="#1E1E1E" android:contentDescription="Play" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="◢−" android:tag="key:Vol_dn" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="◢+" android:tag="key:Vol_up" />
+                <ImageButton style="@style/Sk.Key" android:tag="key:Vol_dn" android:src="@drawable/ic_k_vol_dn" android:scaleType="fitCenter" android:padding="7dp" android:tint="#1E1E1E" android:contentDescription="Vol_dn" />
+                <ImageButton style="@style/Sk.Key" android:tag="key:Vol_up" android:src="@drawable/ic_k_vol_up" android:scaleType="fitCenter" android:padding="7dp" android:tint="#1E1E1E" android:contentDescription="Vol_up" />
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="0" android:tag="key:0" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">

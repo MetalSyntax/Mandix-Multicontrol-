@@ -23,28 +23,28 @@
                 <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_gravity="end|center_vertical" android:background="@drawable/led_indicator" />
             </FrameLayout>
             <LinearLayout style="@style/SkRow">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="58dp" android:text="←" android:textSize="16sp" android:tag="key:Back" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="58dp" android:text="⌂" android:textSize="16sp" android:tag="key:Home" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="58dp" android:tag="key:Back" android:src="@drawable/ic_k_back" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Back" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="58dp" android:tag="key:Home" android:src="@drawable/ic_k_home" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Home" />
             </LinearLayout>
             <!-- Cruz morada -->
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:orientation="vertical" android:gravity="center_horizontal">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="︿" android:textColor="#FFFFFF" android:textSize="16sp" android:tag="key:Up" />
+                <ImageButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:tag="key:Up" android:src="@drawable/ic_k_up" android:scaleType="fitCenter" android:padding="9dp" android:tint="#FFFFFF" android:contentDescription="Up" />
                 <LinearLayout style="@style/SkRow">
-                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="‹" android:textColor="#FFFFFF" android:textSize="22sp" android:tag="key:Left" />
+                    <ImageButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:tag="key:Left" android:src="@drawable/ic_k_left" android:scaleType="fitCenter" android:padding="9dp" android:tint="#FFFFFF" android:contentDescription="Left" />
                     <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#5B40B0" android:text="OK" android:textColor="#FFFFFF" android:textSize="14sp" android:tag="key:Ok" />
-                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="›" android:textColor="#FFFFFF" android:textSize="22sp" android:tag="key:Right" />
+                    <ImageButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:tag="key:Right" android:src="@drawable/ic_k_right" android:scaleType="fitCenter" android:padding="9dp" android:tint="#FFFFFF" android:contentDescription="Right" />
                 </LinearLayout>
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="﹀" android:textColor="#FFFFFF" android:textSize="16sp" android:tag="key:Down" />
+                <ImageButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:tag="key:Down" android:src="@drawable/ic_k_down" android:scaleType="fitCenter" android:padding="9dp" android:tint="#FFFFFF" android:contentDescription="Down" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow" android:layout_marginTop="6dp">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="⟲" android:textSize="15sp" android:tag="key:Replay" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="☾" android:textSize="15sp" android:tag="key:Sleep" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="✱" android:textSize="15sp" android:tag="key:Options" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Replay" android:src="@drawable/ic_k_replay" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Replay" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Sleep" android:src="@drawable/ic_k_sleep" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Sleep" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Options" android:src="@drawable/ic_k_star" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Options" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="◀◀" android:textSize="9sp" android:tag="key:Rew" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="▶❚❚" android:textSize="9sp" android:tag="key:Play" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="▶▶" android:textSize="9sp" android:tag="key:Ffwd" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Rew" android:src="@drawable/ic_k_rew" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Rew" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Play" android:src="@drawable/ic_k_playpause" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Play" />
+                <ImageButton style="@style/Sk.Pill" android:layout_width="42dp" android:tag="key:Ffwd" android:src="@drawable/ic_k_ffwd" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Ffwd" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow" android:layout_marginTop="8dp">
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="24dp" android:backgroundTint="#F2F2F2" android:text="NETFLIX" android:textSize="9sp" android:textColor="#E50914" android:tag="key:Netflix" />

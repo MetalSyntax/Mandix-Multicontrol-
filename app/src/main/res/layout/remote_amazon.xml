@@ -21,24 +21,24 @@
                 <ImageButton style="@style/Sk" android:layout_width="30dp" android:layout_height="30dp" android:src="@drawable/ic_power" android:padding="7dp" android:tag="key:Power" android:contentDescription="Power" />
                 <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_marginStart="44dp" android:background="@drawable/led_indicator" />
             </LinearLayout>
-            <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:backgroundTint="#22B8D8" android:text="◯" android:textColor="#FFFFFF" android:tag="bt:Alexa" />
+            <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:backgroundTint="#22B8D8" android:tag="bt:Alexa" android:src="@drawable/ic_k_mic" android:scaleType="fitCenter" android:padding="8dp" android:tint="#FFFFFF" android:contentDescription="Alexa" />
             <FrameLayout android:layout_width="132dp" android:layout_height="132dp" android:layout_marginTop="6dp">
                 <View android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/sk_circle" android:backgroundTint="#141415" android:backgroundTintMode="multiply" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="top|center_horizontal" android:layout_margin="0dp" android:text="•" android:tag="bt:Up" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="bottom|center_horizontal" android:layout_margin="0dp" android:text="•" android:tag="bt:Down" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="start|center_vertical" android:layout_margin="0dp" android:text="•" android:tag="bt:Left" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="end|center_vertical" android:layout_margin="0dp" android:text="•" android:tag="bt:Right" />
+                <ImageButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="top|center_horizontal" android:layout_margin="0dp" android:tag="bt:Up" android:src="@drawable/ic_k_up" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Up" />
+                <ImageButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="bottom|center_horizontal" android:layout_margin="0dp" android:tag="bt:Down" android:src="@drawable/ic_k_down" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Down" />
+                <ImageButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="start|center_vertical" android:layout_margin="0dp" android:tag="bt:Left" android:src="@drawable/ic_k_left" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Left" />
+                <ImageButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="end|center_vertical" android:layout_margin="0dp" android:tag="bt:Right" android:src="@drawable/ic_k_right" android:scaleType="fitCenter" android:padding="7dp" android:tint="#E5E5E5" android:contentDescription="Right" />
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="66dp" android:layout_height="66dp" android:layout_gravity="center" android:backgroundTint="#1E1E20" android:tag="bt:Select" />
             </FrameLayout>
             <LinearLayout style="@style/SkRow" android:layout_marginTop="6dp">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="↩" android:tag="bt:Back" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="⌂" android:tag="bt:Home" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="☰" android:tag="bt:Menu" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Back" android:src="@drawable/ic_k_undo" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Back" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Home" android:src="@drawable/ic_k_home" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Home" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Menu" android:src="@drawable/ic_k_menu" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Menu" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="◀◀" android:textSize="9sp" android:tag="bt:Rew" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="▶❚❚" android:textSize="9sp" android:tag="bt:Play" />
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="▶▶" android:textSize="9sp" android:tag="bt:Ffwd" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Rew" android:src="@drawable/ic_k_rew" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Rew" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Play" android:src="@drawable/ic_k_playpause" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Play" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Ffwd" android:src="@drawable/ic_k_ffwd" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Ffwd" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow">
                 <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:src="@drawable/ic_mute" android:tint="#E5E5E5" android:padding="10dp" android:tag="key:Mute" android:contentDescription="Mute" />
@@ -46,7 +46,7 @@
                     <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_margin="0dp" android:text="+" android:textSize="20sp" android:tag="key:Vol_up" />
                     <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_margin="0dp" android:text="−" android:textSize="20sp" android:tag="key:Vol_dn" />
                 </LinearLayout>
-                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="TV" android:textSize="10sp" android:tag="bt:Guide" />
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:tag="bt:Guide" android:src="@drawable/ic_k_tv" android:scaleType="fitCenter" android:padding="8dp" android:tint="#E5E5E5" android:contentDescription="Guide" />
             </LinearLayout>
             <LinearLayout style="@style/SkRow" android:layout_marginTop="8dp">
                 <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="22dp" android:backgroundTint="#1B3A5C" android:text="prime video" android:textSize="8sp" android:textColor="#8ED1FC" android:tag="bt:Prime" />

@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.URLEncoder
 
 /** Control por red de equipos que no reciben (todas) sus teclas por IR. Las teclas usan los nombres de los layouts. */
 interface WifiLink {
@@ -17,6 +18,9 @@ interface WifiLink {
 
     /** null = enviado; si no, el motivo del fallo para mostrar al usuario. */
     suspend fun press(ip: String, key: String): String?
+
+    /** Escribe [text] en el campo enfocado del equipo (búsquedas, contraseñas). Igual que [press]: null = enviado. */
+    suspend fun type(ip: String, text: String): String?
 }
 
 /** Roku: External Control Protocol (HTTP, puerto 8060). Requiere "Control por apps móviles" en Permisivo. */
@@ -30,8 +34,19 @@ object RokuEcp : WifiLink {
 
     override fun supports(key: String) = key in KEYS || key in APPS
 
-    override suspend fun press(ip: String, key: String): String? = withContext(Dispatchers.IO) {
-        val path = KEYS[key]?.let { "keypress/$it" } ?: "launch/${APPS.getValue(key)}"
+    override suspend fun press(ip: String, key: String): String? =
+        post(ip, KEYS[key]?.let { "keypress/$it" } ?: "launch/${APPS.getValue(key)}")
+
+    // ECP no tiene "escribir texto": una tecla Lit_ por carácter (acepta Unicode)
+    override suspend fun type(ip: String, text: String): String? {
+        for (c in text.codePoints().toArray()) {
+            val lit = URLEncoder.encode(String(Character.toChars(c)), "UTF-8").replace("+", "%20")
+            post(ip, "keypress/Lit_$lit")?.let { return it }
+        }
+        return null
+    }
+
+    private suspend fun post(ip: String, path: String): String? = withContext(Dispatchers.IO) {
         try {
             val c = URL("http://$ip:8060/$path").openConnection() as HttpURLConnection
             c.requestMethod = "POST"
@@ -76,8 +91,18 @@ class FireAdb(private val keyDir: File) : WifiLink {
     override suspend fun press(ip: String, key: String): String? = withContext(Dispatchers.IO) {
         // AdbKeyPair usa java.util.Base64 (Android 8+)
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return@withContext "Android 8+"
-        val cmd = KEYCODES[key]?.let { "input keyevent $it" }
-            ?: "monkey -p ${APPS.getValue(key)} -c android.intent.category.LEANBACK_LAUNCHER 1"
+        exec(ip, KEYCODES[key]?.let { "input keyevent $it" }
+            ?: "monkey -p ${APPS.getValue(key)} -c android.intent.category.LEANBACK_LAUNCHER 1")
+    }
+
+    // ponytail: "input text" solo escribe ASCII (tildes/ñ/emoji se pierden); para eso haría falta un IME propio en el Fire TV
+    override suspend fun type(ip: String, text: String): String? = withContext(Dispatchers.IO) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return@withContext "Android 8+"
+        // comillas simples para el shell; "input" toma %s como espacio
+        exec(ip, "input text '" + text.replace("'", "'\\''").replace(" ", "%s") + "'")
+    }
+
+    private suspend fun exec(ip: String, cmd: String): String? =
         mutex.withLock {
             try {
                 run(ip, cmd)
@@ -87,7 +112,6 @@ class FireAdb(private val keyDir: File) : WifiLink {
             }
             null
         }
-    }
 
     /** Un stream "shell:" por tecla sobre la misma conexión; se lee hasta el final para que el comando termine. */
     private fun run(ip: String, cmd: String) {

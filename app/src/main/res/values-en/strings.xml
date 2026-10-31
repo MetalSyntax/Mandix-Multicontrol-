@@ -130,4 +130,9 @@
     <string name="toast_roku_limited">The Roku blocks Wi-Fi control: set Network access → Permissive in Control by mobile apps</string>
     <string name="toast_wifi_failed">No Wi-Fi answer from %1$s (%2$s). Same Wi-Fi? Right IP?</string>
     <string name="toast_fire_first_connect">Connecting to Fire TV… if the TV asks “Allow USB debugging?”, choose Always allow</string>
+    <string name="btn_type">⌨ Type on TV</string>
+    <string name="type_title">Type on TV</string>
+    <string name="type_hint">Type or paste here; open the text field on the TV first</string>
+    <string name="type_send">Send</string>
+    <string name="toast_type_sent">Text sent</string>
 </resources>
